@@ -20,13 +20,13 @@ end
 
 FIRST_SETUP = <<SCRIPT
 echo "==> Installing development tools"
-sudo yum -y update
-sudo yum -y install git make zsh
+sudo apt -y update
+sudo apt -y install git make zsh
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/7"
-  config.vm.hostname = "eva-dev-box"
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.hostname = "dev-box"
   config.vm.synced_folder ".", "/root/dev"
   config.vm.provision "shell", inline: FIRST_SETUP
   config.vm.provision :hosts, :sync_hosts => true
